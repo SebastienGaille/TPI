@@ -25,3 +25,11 @@ button {
     margin-top: 1rem;
     font-size: 1.1rem;
 }
+
+.centered-full-page {
+    width: 100%;
+    min-height: 100%;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+}

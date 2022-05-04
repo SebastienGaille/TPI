@@ -33,15 +33,16 @@ require_once __DIR__ . '/../myDB.php';
 
   try {   
      
-    $request = $db->prepare("INSERT INTO user(nickname,registration_date) VALUES(:NICKNAME,':RD')");
+    $request = $db->prepare("INSERT INTO user(nickname,registration_date) VALUES(:NICKNAME,:RD)");
     
     $res = $request->execute(array(
       ':NICKNAME' => $username,
-       ':RD'=> '2022-05-03'
+       ':RD'=> date("Y/m/d")
     ));
     
 
   } catch (Exception $e) {
+      echo $e ;
     die("services  momentanément indisponible. Merci de réessayer plus tard");
   }
 

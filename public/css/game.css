@@ -32,7 +32,7 @@ canvas {
 a {
     color: white;
     text-decoration: none;
-    transition: color 2s, transition 1s;
+    transition: color 1s, transition 1s;
 }
 
 a:hover {
@@ -47,10 +47,12 @@ a:hover {
     color: white;
     font-size: 5vmax;
 }
-
+#pauseMenu{
+    display: none;
+}
 .game-menu {
     border: solid rgb(73, 73, 73) 2rem;
-    display: block;
+   
     width: 80vw;
     height: 80vh;
     margin-right: 10vw;
@@ -60,7 +62,11 @@ a:hover {
     position: absolute;
     top: 0px;
     left: 0px;
-    background-color: rgba(77, 77, 80, 0.5)
+    background-color: rgba(77, 77, 80, 0.5);
+    transition: background-color 2s;
+}
+.game-menu:hover{
+    background-color: rgba(18, 18, 90, 0.3);
 }
 
 .button-menu-game {
@@ -70,10 +76,11 @@ a:hover {
     text-align: center;
     width: 20vw;
     height: 10vh;
-    color: rgb(97, 97, 97);
+    color: white;
     font-size: 2rem;
     background-color: rgb(85, 85, 85);
-    transition: width 1s, height 1s, background-color 2s, transform 0.5s, color 2s, font-size 1s, margin-right 1s, margin-left 1s, margin-top 1s;
+    transition: width 1s, height 1s, background-color 2s, transform 0.5s, color 1s, font-size 2s, margin-right 1s, margin-left 1s, margin-top 1s,padding-top 2s,border 2s;
+    border: solid rgb(70, 70, 70) 10px;
 }
 
 .container {
@@ -90,6 +97,9 @@ a:hover {
     margin-right: 4vw;
     margin-left: 4vw;
     margin-top: 1vh;
+    font-size: 4rem;
+    padding-top: 2vh;
     color: white;
     background-color: rgb(97, 134, 189);
+    border: solid rgb(55, 74, 104) 10px;
 }

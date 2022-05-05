@@ -16,7 +16,7 @@
     <div id="info">
     <h1>
     <?php echo $_SESSION['username'];?>
-    </h1>
+    </h1 id="score">
     score : 0
     </div>
 
@@ -33,9 +33,9 @@
             </div>
         </div>  
     </div>
-    <img src="../public/sprites/spritesCar/Car1.gif" class="sprite">
-    <img src="../public/sprites/spritesCar/Car2.gif" class="sprite">
-    <img src="../public/sprites/spritesCar/Car3.gif" class="sprite">
+    <img src="../public/sprites/spritesCar/Car1.gif" class="sprite" id="car1">
+    <img src="../public/sprites/spritesCar/Car2.gif" class="sprite" id="car2">
+    <img src="../public/sprites/spritesCar/Car3.gif" class="sprite" id="car3">
     <img src="../public/sprites/spritesTruck/Truck1.gif" class="sprite">
     <img src="../public/sprites/spritesTruck/Truck2.gif" class="sprite">
     <img src="../public/sprites/spritesTruck/Truck3.gif" class="sprite">

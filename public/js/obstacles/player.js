@@ -3,10 +3,11 @@ import Shape from './shape.js';
 export default class Player extends Shape {
   
   draw(ctx) {    
-    const width = 512;
-    const height = 512;
+    const width = 400;
+    const height = 400;
     const resizeFactor = 0.3;
     ctx.drawImage(document.querySelector('#player'), this.x - width * resizeFactor/2, this.y  - height * resizeFactor/2, width * resizeFactor, height * resizeFactor);
+    
   }
 
   update(deltaT, dir, ctx) {

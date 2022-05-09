@@ -3,7 +3,7 @@ const collisionVisible = false;
 
 export default class Shape{
 
-    constructor(x,y,layer,speed = 0.1,hitBoxWidth=100,hitBoxHeight=100){
+    constructor(x,y,layer,speed = 0.1,hitBoxWidth=80,hitBoxHeight=80){
         this.x=x;
         this.y=y;
         this.layer = layer;
@@ -15,7 +15,7 @@ export default class Shape{
     draw(ctx){
         if (!collisionVisible) return;
         ctx.fillStyle="red";
-        ctx.fillRect(this.x - this.hitBoxWidth/2,this.y-this.hitBoxHeight,this.hitBoxWidth,this.hitBoxHeight);
+        ctx.fillRect(this.x - this.hitBoxWidth/2,this.y-this.hitBoxHeight+50,this.hitBoxWidth,this.hitBoxHeight);
     }
 
     update(deltaT,dir){
@@ -25,10 +25,10 @@ export default class Shape{
         this.y+=distY;
     }
     //détecte si l'objet est en collision
-    isInCollision(x,y){
-        return(x > this.x - this.hitBoxWidth/2
-            && x < this.x + this.hitBoxWidth/2
-            && y >this.y + this.hitBoxHeight/2
-            && y <this.y - this.hitBoxHeight/2)
+    isInCollision(x, y,) {        
+        return (x > this.x - this.hitBoxWidth/2 
+             && x < this.x + this.hitBoxWidth/2 
+             && y > this.y - this.hitBoxHeight/2
+             && y < this.y + this.hitBoxHeight/2);
+      }
     }
-}

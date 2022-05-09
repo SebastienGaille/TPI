@@ -16,12 +16,18 @@ const keyboard = new Keyboard();
 const pauseMenu = document.getElementById('pauseMenu');
 const backToGame = document.getElementById('back');
 const speedPlayer = 0.5;
-
+const restartGame = document.getElementById('gameOverMenu')
 let score = document.getElementById('score');
 let gameOver =false;
 let pause = false;
 let lastTime = 0;
 let timerAddScore = 0;
+let btnRestart = document.getElementById('restart');
+let scoreGameOver = document.getElementById('scoreGameOver');
+
+let numQuestionRespond;
+let numQuestionRespondTrue;
+let numQuestionRespondFalse;
 
 
 let player = new Player(ctx.canvas.width / 2, ctx.canvas.height - 200, 0, speedPlayer,60,100);
@@ -87,10 +93,14 @@ const timerScore =setInterval(() => {
 }, 100);
 
 //la fonction backToGame sert au bouton back de fermer l'écran de pause
+if(!gameOver){
+    keyboard.onKeyDown('Escape',menuPause);
+    backToGame.onclick=menuPause;
+}
 
-keyboard.onKeyDown('Escape',menuPause);
 keyboard.onKeyDown('KeyR',restart);
-backToGame.onclick=menuPause;
+btnRestart.onclick=restart;
+
 
 
 function menuPause() {
@@ -110,7 +120,10 @@ function restart(){
     while(entities.length > 0){
         entities.pop();
     }
+    score.style.display="block";
+    restartGame.style.display="none";
     ctx.canvas.style.filter="blur("+0+"px)";
+    ctx.canvas.style['background-color']="white";
     timerAddScore = 0;
     player.x = ctx.canvas.width / 2;
     player.y= ctx.canvas.height - 200;
@@ -123,8 +136,17 @@ function menuGameOver(){
 
         if(gameOver){
             ctx.canvas.style.filter="blur("+5+"px)";
-            
+            restartGame.style.display="block";
+            score.style.display="none";
+            ctx.canvas.style['background-color']="black";
+            scoreGameOver.innerHTML = "Votre score est de : "+timerAddScore;
+            if(pause){
+                pause=false;
+                pauseMenu.style.display="none";
+                return;
+            }
         } 
+        
         
 }
 

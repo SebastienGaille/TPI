@@ -14,7 +14,7 @@
         
     </canvas>
     <div id="info">
-    <h1>
+    <h1 id="pseudoGame">
     <?php echo $_SESSION['username'];?>
     </h1 >
     <h1 id="score">
@@ -35,17 +35,23 @@
                 Retour au jeu
             </div>
         </div>  
-    </div>
+    </div>  
 
     <div class="game-Over" id="gameOverMenu">
         <h1 id="gameOverTitle">
-            pause
+            Game Over
         </h1>
+        <h2>
+            Dommage <?php echo $_SESSION['username'];?> vous avez malheureusement perdu :( 
+        </h2>
+        <h2 id="scoreGameOver">
+            Votre score est de : 0
+        </h2>
         <div class="container">
             <div class="button-menu-game" id="exit" >
                 <a href="index.php?page=menu">exit</a>
             </div>
-            <div class="button-menu-game" id="back" onclick="btnBackToGame()">
+            <div class="button-menu-game" id="restart" onclick="restart()">
                Restart
             </div>
         </div>  

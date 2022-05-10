@@ -12,7 +12,7 @@ try{
 }
 catch(Exception $e){
     
-die("services momentanément indisponible. Merci de réessayer plus tard!!");
+    die("services momentanément indisponible. Merci de réessayer plus tard!!");
 }
 
 if($username != $usernameDB){
@@ -24,5 +24,22 @@ if($username != $usernameDB){
 $_SESSION['username'] = $username;
 $_SESSION['iduser'] = $row['iduser'];
 
-header('location: index.php?page=menu');
+echo "page: " . $page;
+
+//$selectQuestion = $_REQUEST['selectQuestion'];
+
+//$_SESSION['idquestion'] = $selectQuestion;
+
+echo "selectQuestion:"+$selectQuestion;
+
+if(isset($selectQuestion) && $isConnect){
+    $page='selectQuestion';
+    header('location: index.php?page='.$page);
+}
+else{
+    header('location: index.php?page=menu');
+}
+
+
+
 die();

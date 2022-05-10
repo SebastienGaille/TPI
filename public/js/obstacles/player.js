@@ -19,12 +19,12 @@ export default class Player extends Shape {
       this.x -= distX;
     }
     
-    if(this.x<10){
-      this.x=10;
+    if(this.x<250){
+      this.x=250;
     }
     //collision des bord du canvas 
-    if(this.x>ctx.canvas.width-10){
-      this.x=ctx.canvas.width-10;
+    if(this.x>ctx.canvas.width-250){
+      this.x=ctx.canvas.width-250;
     }
   }
 

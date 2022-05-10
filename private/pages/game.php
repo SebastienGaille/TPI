@@ -8,9 +8,11 @@
     <link rel="stylesheet" href="./css/game.css">
     <script type="module" src="./js/mainGame.js"></script>
     <link rel="icon" href="favicon.ico" />
+    <!-- jquery librairie javascript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
-    <canvas>
+    <canvas class="wrapper">
         
     </canvas>
     <div id="info">

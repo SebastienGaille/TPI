@@ -2,6 +2,7 @@
 //ouvre la session 
 session_start();
 
+
 $page = $_REQUEST['page'] ?? 'login';
 
 

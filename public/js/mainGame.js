@@ -107,9 +107,15 @@ setInterval(() => {
     if(pause){
         return;
     }
+
+   
+
+    findQuestion();
+
+    console.log("findQuestion()");
     console.log("sa marche :"+getRandomQuestionId(1,30));
     
-}, /* interval aléatoire  de 8 à 30 secondes*/getRandomQuestionInTime(1,2));
+}, /* interval aléatoire  de 8 à 30 secondes*/getRandomQuestionInTime(5,10));
 
 
 //la fonction backToGame sert au bouton back de fermer l'écran de pause
@@ -120,33 +126,44 @@ if(!gameOver){
 
 keyboard.onKeyDown('KeyR',restart);
 btnRestart.onclick=restart;
-
 function findQuestion(){
-    var jsonObj = {};
-    jsonObj.idQuestion = numBds;
-    let params = new URLSearchParams(jsonObj);
-    fetch('', {
-        method: "POST",
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: params.toString()
-    })
-    .then(reponse => reponse.json())
-    .then((data) => {
-        if(data["Result"] == "Error"){
-            console.log("Il y a eu une Erreur");
-            
-        }
-        else{
-            location.reload();
-        
-        }
-    })
-    .catch((error) => {
-        console.error('Error:', error);
+
+    $.ajax({
+        type: "POST",
+        url: "index.php?page=selectQuestion",
+        data: {idquestion:'1'}
     });
+
 }
+
+
+// function findQuestion(){
+//     var jsonObj = {};
+//     jsonObj.idQuestion = 1;
+//     console.log(jsonObj);
+//     let params = new URLSearchParams(jsonObj);
+//     fetch('index.php?page=inscription"', {
+//         method: "POST",
+//         headers: {
+//             'Content-Type': 'application/x-www-form-urlencoded'
+//         },
+//         body: params.toString()
+//     })
+//     .then(reponse => reponse.json())
+//     .then((data) => {
+//         if(data["Result"] == "Error"){
+//             console.log("Il y a eu une Erreur");
+            
+//         }
+//         else{
+//             location.reload();
+        
+//         }
+//     })
+//     .catch((error) => {
+//         console.error('Error:', error);
+//     });
+// }
 
 
 function menuPause() {
@@ -185,7 +202,7 @@ function menuGameOver(){
             restartGame.style.display="block";
             score.style.display="none";
             ctx.canvas.style['background-color']="black";
-            ctx.canvas.style.filter="blur("+10+"px)";
+            ctx.canvas.style.filter="blur("+30+"px)";
             scoreGameOver.innerHTML = "Votre score est de : "+timerAddScore;
             if(pause){
                 pause=false;
@@ -195,6 +212,23 @@ function menuGameOver(){
         } 
         
         
+}
+setInterval(() => {
+    backgroundMoving();
+}, 1);
+
+
+function backgroundMoving(){
+    if(gameOver){
+        return;
+    }
+    if(pause){
+        ctx.canvas.style.animation="none";
+        return;
+    }
+    ctx.canvas.style['background-image']="url('./sprites/background/road6.png')";
+    ctx.canvas.style.animation="scroll 40s linear infinite";
+
 }
 
 // const timerScore = setInterval(() => {
@@ -249,7 +283,7 @@ function tick(time) {
     entities.sort((e1, e2) => e1.layer - e2.layer);
     for (const entity of entities) entity.draw(ctx);
 
-
+    
     player.draw(ctx);
     // pause();
 

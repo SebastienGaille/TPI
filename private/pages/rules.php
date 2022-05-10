@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <link rel="icon" href="favicon.ico"/> -->
     <title>Rules</title>
+    <link rel="stylesheet" href="./css/rules.css">
     
 </head>
 <body>
@@ -22,17 +23,22 @@
 </div>
 </header>
 <main>
- <div>
+ <div class="game-rules">
      <h3>
          Comment jouer
      </h3>
      <p>
-         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Impedit eligendi sit voluptatem quaerat, at suscipit sapiente, vero doloremque doloribus sequi accusamus quos cum ad, quod minima iure maxime expedita deleniti?
+        Situation: 
+        Vous êtes sur une autoroute à contre sens et vous devez éviter les voitures,camions et motos qui viennent en contre sens.
+        Par moment, vous devrez répondre à des questions à choix multiples sur le code de la route, ATTENTION a repondre rapidement car le jeu sera toujours en cours.
+        Si vous échouez vous subirer deux secondes de pénalité.
+        Votre score sera comptabilisé à l'aide du temps et des questions répondue juste.
      </p>
+     <a href="index.php?page=menu"> Retour au menu</a>
  </div>
 </main>
 <footer>
-<a href="index.php?page=menu"> back to menu</a>
+
 </footer>
 
 </body>

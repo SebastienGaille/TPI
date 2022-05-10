@@ -56,6 +56,30 @@
             </div>
         </div>  
     </div>
+
+    <div class="question-menu-game" id="menuQuestion1">
+                <img src="./sprites/spriteRoadSign/AccessForbidden" alt="" id="question1" >
+                <p class="question-text">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis architecto asperiores quibusdam repudiandae minima recusandae est ex labore nisi, soluta ratione voluptate maiores consequuntur rerum, eius sequi assumenda quasi totam!
+                </p>
+                <div class="proposition-menu">
+                    <div>
+                        <input type="radio" id="proposition1" name="drone" value="huey"
+                                checked>
+                        <label for="huey">choix1</label>
+                    </div>
+
+                    <div>
+                        <input type="radio" id="proposition2" name="drone" value="dewey">
+                        <label for="dewey">choix2</label>
+                    </div>
+
+                    <div>
+                        <input type="radio" id="proposition3" name="drone" value="louie">
+                        <label for="louie">choix3</label>
+                    </div>
+                </div>
+    </div>
     <img src="./sprites/spritesCar/Car1.gif" class="sprite" id="car1">
     <img src="./sprites/spritesCar/Car2.gif" class="sprite" id="car2">
     <img src="./sprites/spritesCar/Car3.gif" class="sprite" id="car3">

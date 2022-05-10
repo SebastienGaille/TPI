@@ -4,7 +4,8 @@ import Car from "./obstacles/car.js";
 import Truck from "./obstacles/truck.js";
 import Moto from "./obstacles/moto.js";
 import { getRandomSpeed } from './utils/math.js';
-
+import { getRandomQuestionId } from './utils/math.js';
+import { getRandomQuestionInTime } from './utils/math.js';
 const ctx = document.querySelector('canvas').getContext('2d');
 
 // place la taille du canvas sur la taille du DOM
@@ -29,9 +30,15 @@ let numQuestionRespond;
 let numQuestionRespondTrue;
 let numQuestionRespondFalse;
 
+let text;
+
 
 let player = new Player(ctx.canvas.width / 2, ctx.canvas.height - 200, 0, speedPlayer,60,100);
 let entities = [];
+
+
+
+
 
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -92,6 +99,19 @@ const timerScore =setInterval(() => {
  
 }, 100);
 
+//interval pour l'apparitions des questions 
+setInterval(() => {
+    if(gameOver){
+        return;
+    }
+    if(pause){
+        return;
+    }
+    console.log("sa marche :"+getRandomQuestionId(1,30));
+    
+}, /* interval aléatoire  de 8 à 30 secondes*/getRandomQuestionInTime(1,2));
+
+
 //la fonction backToGame sert au bouton back de fermer l'écran de pause
 if(!gameOver){
     keyboard.onKeyDown('Escape',menuPause);
@@ -101,6 +121,32 @@ if(!gameOver){
 keyboard.onKeyDown('KeyR',restart);
 btnRestart.onclick=restart;
 
+function findQuestion(){
+    var jsonObj = {};
+    jsonObj.idQuestion = numBds;
+    let params = new URLSearchParams(jsonObj);
+    fetch('', {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: params.toString()
+    })
+    .then(reponse => reponse.json())
+    .then((data) => {
+        if(data["Result"] == "Error"){
+            console.log("Il y a eu une Erreur");
+            
+        }
+        else{
+            location.reload();
+        
+        }
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}
 
 
 function menuPause() {
@@ -139,6 +185,7 @@ function menuGameOver(){
             restartGame.style.display="block";
             score.style.display="none";
             ctx.canvas.style['background-color']="black";
+            ctx.canvas.style.filter="blur("+10+"px)";
             scoreGameOver.innerHTML = "Votre score est de : "+timerAddScore;
             if(pause){
                 pause=false;

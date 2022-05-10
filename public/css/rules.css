@@ -1,0 +1,55 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    height: 100vh;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-color :rgb(44, 44, 44);
+}
+
+header {
+    width: 100vw;
+    height: 20vh;
+    font-size: 3rem;
+    background-color: rgb(160, 39, 39);
+    color: aliceblue;
+}
+
+main{
+    width: 100vw;
+    height: 80vh;
+    background-color: rgb(44, 44, 44);
+}
+
+.game-rules{
+    margin-top: 10vh;
+    width: 80vw;
+    height: 60vh;
+    margin-right: 10vw;
+    margin-left: 10vw;
+    text-align: justify;
+    font-size: 3rem;
+    background-color: gray;
+    border: 12px solid rgb(97, 96, 96);
+    color: white;
+    transition: width 2s, height 2s, background-color 2s, transform 1s, color 2s, font-size 1s;
+}
+a{
+    color: white;
+    height: 10vh;
+    width: 70%;
+    text-decoration: none;
+    transition: background-color 1s,color 1s, tranform 1s;
+
+}
+a:hover{
+    color: black;
+    background-color: white;
+}
+

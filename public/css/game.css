@@ -122,3 +122,28 @@ a:hover {
     transition: background-color 2s;
     display: none;
 }
+
+.question-menu-game{
+    border: solid rgb(73, 73, 73) 2rem;
+    display: none;
+    width: 50vw;
+    height: 50vh;
+    margin-right: 25vw;
+    margin-left: 25vw;
+    margin-top: 25vh;
+    margin-bottom: 25vh;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(77, 77, 80, 0.5);
+    transition: background-color 10s,width 10s,height 10s,margin-right 10s, margin-left 10s, margin-top,margin-bottom 10s,transform 10s;
+}
+.question-menu-game:hover{
+    
+    width: 100vw;
+    height: 100vh;
+    margin-right: 0vw;
+    margin-left: 0vw;
+    margin-top: 0vh;
+    margin-bottom: 0vh;
+}

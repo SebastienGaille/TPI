@@ -1,4 +1,24 @@
-<!DOCTYPE html>
+<?php
+require_once __DIR__ . '/../myDB.php';
+
+//  $request =$db->prepare("SELECT * FROM question");
+$request =$db->prepare("SELECT text,proposal_1, proposal_2,proposal_3,proposal_valid_index  FROM question"); //mets tout les champs
+ $request->execute();
+ $questions = $request -> fetchAll();
+//  $result = $sth->fetchAll(PDO::FETCH_CLASS, 'question');
+
+ $questionsArray = [];
+ foreach ($questions as $question) {
+   $questionsArray[] = $question;
+ };
+
+//  //print_r($questionsArray);
+//  die(json_encode($questionsArray));
+
+
+
+
+?><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,14 +26,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>High-Way</title>
     <link rel="stylesheet" href="./css/game.css">
-    <script type="module" src="./js/mainGame.js"></script>
+
     <link rel="icon" href="favicon.ico" />
     <!-- jquery librairie javascript -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        
+         window.questions = <?php echo json_encode($questionsArray);?>;
+        
+    </script>
+    <script type="module" src="./js/mainGame.js"></script>
 </head>
 <body>
     <canvas class="wrapper">
-        
+
     </canvas>
     <div id="info">
     <h1 id="pseudoGame">
@@ -22,7 +48,7 @@
     <h1 id="score">
     score : 0
     </h1>
-    
+
     </div>
 
     <div class="game-menu" id="pauseMenu">
@@ -36,15 +62,15 @@
             <div class="button-menu-game" id="back" onclick="btnBackToGame()">
                 Retour au jeu
             </div>
-        </div>  
-    </div>  
+        </div>
+    </div>
 
     <div class="game-Over" id="gameOverMenu">
         <h1 id="gameOverTitle">
             Game Over
         </h1>
         <h2>
-            Dommage <?php echo $_SESSION['username'];?> vous avez malheureusement perdu :( 
+            Dommage <?php echo $_SESSION['username'];?> vous avez malheureusement perdu :(
         </h2>
         <h2 id="scoreGameOver">
             Votre score est de : 0
@@ -56,29 +82,28 @@
             <div class="button-menu-game" id="restart" onclick="restart()">
                Restart
             </div>
-        </div>  
+        </div>
     </div>
 
-    <div class="question-menu-game" id="menuQuestion1">
-                <img src="./sprites/spriteRoadSign/AccessForbidden" alt="" id="question1" >
-                <p class="question-text">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis architecto asperiores quibusdam repudiandae minima recusandae est ex labore nisi, soluta ratione voluptate maiores consequuntur rerum, eius sequi assumenda quasi totam!
+    <div class="question-menu-game" id="menu-question">
+                <img src="./sprites/spriteRoadSign/AccessForbidden.png" alt="" id="img-question" >
+                <p class="question-text" id="question-text-id">
+                   
                 </p>
                 <div class="proposition-menu">
                     <div>
-                        <input type="radio" id="proposition1" name="drone" value="huey"
-                                checked>
-                        <label for="huey">choix1</label>
+                        <input type="radio" id="proposition1" name="response" value="">
+                        <label for="response"  id="label-proposition1"></label>
                     </div>
 
                     <div>
-                        <input type="radio" id="proposition2" name="drone" value="dewey">
-                        <label for="dewey">choix2</label>
+                        <input type="radio" id="proposition2" name="response" value="">
+                        <label for="response"  id="label-proposition2"></label>
                     </div>
 
                     <div>
-                        <input type="radio" id="proposition3" name="drone" value="louie">
-                        <label for="louie">choix3</label>
+                        <input type="radio" id="proposition3" name="response" value="">
+                        <label for="response" id="label-proposition3"></label>
                     </div>
                 </div>
     </div>
@@ -93,6 +118,6 @@
     <img src="./sprites/spritesMoto/Moto2.gif" class="sprite" id="moto2">
     <img src="./sprites/spritesMoto/Moto3.gif" class="sprite" id="moto3">
 
-    
+
 </body>
 </html>

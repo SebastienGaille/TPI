@@ -6,6 +6,8 @@ import Moto from "./obstacles/moto.js";
 import { getRandomSpeed } from './utils/math.js';
 import { getRandomQuestionId } from './utils/math.js';
 import { getRandomQuestionInTime } from './utils/math.js';
+
+console.log(window.questions[0].proposal_1)
 const ctx = document.querySelector('canvas').getContext('2d');
 
 // place la taille du canvas sur la taille du DOM
@@ -17,7 +19,16 @@ const keyboard = new Keyboard();
 const pauseMenu = document.getElementById('pauseMenu');
 const backToGame = document.getElementById('back');
 const speedPlayer = 0.5;
-const restartGame = document.getElementById('gameOverMenu')
+const restartGame = document.getElementById('gameOverMenu');
+
+
+const menuQuestion = document.getElementById('menu-question');
+const textQuestion = document.getElementById('question-text-id');
+// const imgQuestion = document.getElementById('proposition1');
+const p1LabelQuestion = document.getElementById('label-proposition1');
+const p2LabelQuestion = document.getElementById('label-proposition2');
+const p3LabelQuestion = document.getElementById('label-proposition3');
+
 let score = document.getElementById('score');
 let gameOver =false;
 let pause = false;
@@ -30,7 +41,6 @@ let numQuestionRespond;
 let numQuestionRespondTrue;
 let numQuestionRespondFalse;
 
-let text;
 
 
 let player = new Player(ctx.canvas.width / 2, ctx.canvas.height - 200, 0, speedPlayer,60,100);
@@ -107,15 +117,21 @@ setInterval(() => {
     if(pause){
         return;
     }
+    console.log(window.questions);
+    let x = getRandomQuestionId(0,window.questions.length - 1);
+    textQuestion.textContent = window.questions[x].text;
+    p1LabelQuestion.textContent=window.questions[x].proposal_1;
+    p2LabelQuestion.textContent=window.questions[x].proposal_2;
+    p3LabelQuestion.textContent=window.questions[x].proposal_3;
+    menuQuestion.style.display="block";
 
    
 
-    findQuestion();
-
-    console.log("findQuestion()");
-    console.log("sa marche :"+getRandomQuestionId(1,30));
     
-}, /* interval aléatoire  de 8 à 30 secondes*/getRandomQuestionInTime(5,10));
+
+    
+    
+}, /* interval aléatoire  de 8 à 30 secondes*/getRandomQuestionInTime(1,2));
 
 
 //la fonction backToGame sert au bouton back de fermer l'écran de pause
@@ -126,15 +142,16 @@ if(!gameOver){
 
 keyboard.onKeyDown('KeyR',restart);
 btnRestart.onclick=restart;
-function findQuestion(){
 
-    $.ajax({
-        type: "POST",
-        url: "index.php?page=selectQuestion",
-        data: {idquestion:'1'}
-    });
+// function findQuestion(){
 
-}
+//     $.ajax({
+//         type: "POST",
+//         url: "index.php?page=selectQuestion",
+//         data: {idquestion:'1'}
+//     });
+
+// }
 
 
 // function findQuestion(){
@@ -238,7 +255,7 @@ function backgroundMoving(){
 
 
 function tick(time) {
-    
+    console.log(window.questions + "WORKING!");
     const dt = time - lastTime;
     lastTime = time;
     

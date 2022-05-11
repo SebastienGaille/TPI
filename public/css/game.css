@@ -159,7 +159,8 @@ a:hover {
     background-color: rgba(77, 77, 80, 0.5);
     transition: background-color 10s,width 10s,height 10s,margin-right 10s, margin-left 10s, margin-top,margin-bottom 10s,transform 10s;
 }
-.question-menu-game:hover{
+
+/* .question-menu-game:hover{
     
     width: 100vw;
     height: 100vh;
@@ -167,4 +168,4 @@ a:hover {
     margin-left: 0vw;
     margin-top: 0vh;
     margin-bottom: 0vh;
-}
+} */

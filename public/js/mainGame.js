@@ -25,9 +25,14 @@ const restartGame = document.getElementById('gameOverMenu');
 const menuQuestion = document.getElementById('menu-question');
 const textQuestion = document.getElementById('question-text-id');
 // const imgQuestion = document.getElementById('proposition1');
-const p1LabelQuestion = document.getElementById('label-proposition1');
-const p2LabelQuestion = document.getElementById('label-proposition2');
-const p3LabelQuestion = document.getElementById('label-proposition3');
+const p1LabelQuestion = document.getElementById('proposition1');
+const p2LabelQuestion = document.getElementById('proposition2');
+const p3LabelQuestion = document.getElementById('proposition3');
+
+let correctQuestion;
+let proposition1;
+let  proposition2;
+let proposition3;
 
 let score = document.getElementById('score');
 let gameOver =false;
@@ -36,6 +41,7 @@ let lastTime = 0;
 let timerAddScore = 0;
 let btnRestart = document.getElementById('restart');
 let scoreGameOver = document.getElementById('scoreGameOver');
+
 
 let numQuestionRespond;
 let numQuestionRespondTrue;
@@ -112,77 +118,62 @@ const timerScore =setInterval(() => {
 //interval pour l'apparitions des questions 
 setInterval(() => {
     if(gameOver){
+       
         return;
+
     }
     if(pause){
+
         return;
     }
     console.log(window.questions);
     let x = getRandomQuestionId(0,window.questions.length - 1);
+    correctQuestion=window.questions[x].proposal_valid_index;
+    proposition1= window.questions[x].proposal_1;
+    proposition2=window.questions[x].proposal_2;
+    proposition3= window.questions[x].proposal_3;
+
     textQuestion.textContent = window.questions[x].text;
-    p1LabelQuestion.textContent=window.questions[x].proposal_1;
-    p2LabelQuestion.textContent=window.questions[x].proposal_2;
-    p3LabelQuestion.textContent=window.questions[x].proposal_3;
+    p1LabelQuestion.textContent=proposition1;
+    p2LabelQuestion.textContent=proposition2;
+    p3LabelQuestion.textContent=proposition3;
     menuQuestion.style.display="block";
+    ctx.canvas.style.filter="blur("+20+"px)";
 
    
 
-    
+
 
     
     
-}, /* interval aléatoire  de 8 à 30 secondes*/getRandomQuestionInTime(1,2));
+}, /* interval aléatoire  de 8 à 30 secondes*/getRandomQuestionInTime(10,15));
 
 
 //la fonction backToGame sert au bouton back de fermer l'écran de pause
 if(!gameOver){
     keyboard.onKeyDown('Escape',menuPause);
+    keyboard.onKeyDown('Digit1',selectQuestion)
+    keyboard.onKeyDown('Digit2',selectQuestion)
+    keyboard.onKeyDown('Digit3',selectQuestion)
     backToGame.onclick=menuPause;
 }
 
 keyboard.onKeyDown('KeyR',restart);
 btnRestart.onclick=restart;
 
-// function findQuestion(){
 
-//     $.ajax({
-//         type: "POST",
-//         url: "index.php?page=selectQuestion",
-//         data: {idquestion:'1'}
-//     });
-
-// }
-
-
-// function findQuestion(){
-//     var jsonObj = {};
-//     jsonObj.idQuestion = 1;
-//     console.log(jsonObj);
-//     let params = new URLSearchParams(jsonObj);
-//     fetch('index.php?page=inscription"', {
-//         method: "POST",
-//         headers: {
-//             'Content-Type': 'application/x-www-form-urlencoded'
-//         },
-//         body: params.toString()
-//     })
-//     .then(reponse => reponse.json())
-//     .then((data) => {
-//         if(data["Result"] == "Error"){
-//             console.log("Il y a eu une Erreur");
-            
-//         }
-//         else{
-//             location.reload();
+function selectQuestion(){
+    if(proposition1==correctQuestion||proposition2==correctQuestion||proposition3==correctQuestion){
         
-//         }
-//     })
-//     .catch((error) => {
-//         console.error('Error:', error);
-//     });
-// }
-
-
+        timerAddScore +=100;
+        menuQuestion.style.display="none";
+        ctx.canvas.style.filter="blur("+0+"px)";
+    }
+    else{
+        menuQuestion.style.display="none";
+        ctx.canvas.style.filter="blur("+0+"px)";
+    }
+}
 function menuPause() {
 
     pause = !pause;
@@ -220,6 +211,7 @@ function menuGameOver(){
             score.style.display="none";
             ctx.canvas.style['background-color']="black";
             ctx.canvas.style.filter="blur("+30+"px)";
+            menuQuestion.style.display="none";
             scoreGameOver.innerHTML = "Votre score est de : "+timerAddScore;
             if(pause){
                 pause=false;

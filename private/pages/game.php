@@ -86,25 +86,20 @@ $request =$db->prepare("SELECT text,proposal_1, proposal_2,proposal_3,proposal_v
     </div>
 
     <div class="question-menu-game" id="menu-question">
-                <img src="./sprites/spriteRoadSign/AccessForbidden.png" alt="" id="img-question" >
+                <img src="./sprites/spriteRoadSign/otherWarning.png" alt="" id="img-question" >
                 <p class="question-text" id="question-text-id">
                    
                 </p>
                 <div class="proposition-menu">
-                    <div>
-                        <input type="radio" id="proposition1" name="response" value="">
-                        <label for="response"  id="label-proposition1"></label>
-                    </div>
+                    <p  class="question-selection" id="proposition1">
 
-                    <div>
-                        <input type="radio" id="proposition2" name="response" value="">
-                        <label for="response"  id="label-proposition2"></label>
-                    </div>
+                    </p>
+                    <p class="question-selection" id="proposition2" >
 
-                    <div>
-                        <input type="radio" id="proposition3" name="response" value="">
-                        <label for="response" id="label-proposition3"></label>
-                    </div>
+                    </p>
+                    <p  class="question-selection" id="proposition3">
+
+                    </p>
                 </div>
     </div>
     <img src="./sprites/spritesCar/Car1.gif" class="sprite" id="car1">

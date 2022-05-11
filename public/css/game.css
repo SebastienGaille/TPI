@@ -145,21 +145,41 @@ a:hover {
 }
 
 .question-menu-game{
-    border: solid rgb(73, 73, 73) 2rem;
+    /* border: solid rgb(73, 73, 73) 2rem; */
     display: none;
-    width: 50vw;
-    height: 50vh;
-    margin-right: 25vw;
-    margin-left: 25vw;
-    margin-top: 25vh;
-    margin-bottom: 25vh;
+    width: 80vw;
+    height: 70vh;
+    margin-right: 10vw;
+    margin-left: 10vw;
+    margin-top: 10vh;
+    margin-bottom: 20vh;
     position: absolute;
+    text-align: center;
     top: 0px;
     left: 0px;
     background-color: rgba(77, 77, 80, 0.5);
-    transition: background-color 10s,width 10s,height 10s,margin-right 10s, margin-left 10s, margin-top,margin-bottom 10s,transform 10s;
+    color: white;
+    font-size: 3em;
+    
+    
 }
-
+#img-question{
+    width: 10vw;
+    height: 10vw;
+    margin-left: 20vw;
+    margin-right: 20vw;
+    
+}
+.question-selection{
+    
+    width: 33vw;
+    background-color: none;
+    height: 5vh;
+    margin-right: 40vw;
+    margin-left: 23.5vw;
+    float: left;
+    border: solid white 2px;
+}
 /* .question-menu-game:hover{
     
     width: 100vw;

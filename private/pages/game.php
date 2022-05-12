@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../myDB.php';
 
 //  $request =$db->prepare("SELECT * FROM question");
-$request =$db->prepare("SELECT text,proposal_1, proposal_2,proposal_3,proposal_valid_index  FROM question"); //mets tout les champs
+$request =$db->prepare("SELECT text,proposal_1, proposal_2,proposal_3,proposal_valid_index,picture  FROM question"); //mets tout les champs
  $request->execute();
  $questions = $request -> fetchAll();
 //  $result = $sth->fetchAll(PDO::FETCH_CLASS, 'question');
@@ -28,8 +28,6 @@ $request =$db->prepare("SELECT text,proposal_1, proposal_2,proposal_3,proposal_v
     <link rel="stylesheet" href="./css/game.css">
 
     <link rel="icon" href="favicon.ico" />
-    <!-- jquery librairie javascript -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
         
          window.questions = <?php echo json_encode($questionsArray);?>;
@@ -86,7 +84,7 @@ $request =$db->prepare("SELECT text,proposal_1, proposal_2,proposal_3,proposal_v
     </div>
 
     <div class="question-menu-game" id="menu-question">
-                <img src="./sprites/spriteRoadSign/otherWarning.png" alt="" id="img-question" >
+                <img src="" alt="" id="img-question" >
                 <p class="question-text" id="question-text-id">
                    
                 </p>

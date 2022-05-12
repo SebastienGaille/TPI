@@ -24,18 +24,20 @@ const restartGame = document.getElementById('gameOverMenu');
 
 const menuQuestion = document.getElementById('menu-question');
 const textQuestion = document.getElementById('question-text-id');
-// const imgQuestion = document.getElementById('proposition1');
+const imgQuestion = document.getElementById('img-question');
 const p1LabelQuestion = document.getElementById('proposition1');
 const p2LabelQuestion = document.getElementById('proposition2');
 const p3LabelQuestion = document.getElementById('proposition3');
-
+let duration=0;
+let timeSpan=0;
+let isQuestion = false;
 let correctQuestion;
 let proposition1;
-let  proposition2;
+let proposition2;
 let proposition3;
 
 let score = document.getElementById('score');
-let gameOver =false;
+let gameOver = false;
 let pause = false;
 let lastTime = 0;
 let timerAddScore = 0;
@@ -49,7 +51,7 @@ let numQuestionRespondFalse;
 
 
 
-let player = new Player(ctx.canvas.width / 2, ctx.canvas.height - 200, 0, speedPlayer,60,100);
+let player = new Player(ctx.canvas.width / 2, ctx.canvas.height - 200, 0, speedPlayer, 60, 100);
 let entities = [];
 
 
@@ -61,182 +63,189 @@ function getRandomInt(min, max) {
 }
 //interval qui fait apparaitre une voiture toutes les 2 secondes 
 setInterval(() => {
-    if(gameOver){
+    if (gameOver) {
         return;
     }
-    if(pause){
+    if (pause) {
         return;
     }
-    let x = getRandomInt((ctx.canvas.width / 100) * 21, (ctx.canvas.width / 100) * 99);
+    let x = getRandomInt((ctx.canvas.width / 100) * 30, (ctx.canvas.width / 100) * 90);
     let y = -100;
-    entities.push(new Car(x, y, 2, getRandomSpeed(5,7), 60, 100));
+    entities.push(new Car(x, y, 2, getRandomSpeed(4, 5), 60, 100));
     console.log(entities);
-}, 200);
+}, 400);
 
 setInterval(() => {
-    if(gameOver){
+    if (gameOver) {
         return;
     }
-    if(pause){
+    if (pause) {
         return;
     }
     let x = getRandomInt((ctx.canvas.width / 100) * 21, (ctx.canvas.width / 100) * 99);
     let y = -100;
-    entities.push(new Moto(x, y, 2, getRandomSpeed(7,10), 60, 100));
+    entities.push(new Moto(x, y, 2, getRandomSpeed(3, 5), 60, 100));
     console.log(entities);
 }, 1500);
 //interval qui fait apparaitre un camion toutes les 4 secondes 
 setInterval(() => {
-    if(gameOver){
+    if (gameOver) {
         return;
     }
-    if(pause){
+    if (pause) {
         return;
     }
     let x = getRandomInt(0, (ctx.canvas.width / 100) * 20);
     let y = -100;
-    entities.push(new Truck(x, y, 2, getRandomSpeed(5,7), 60, 100));
+    entities.push(new Truck(x, y, 2, getRandomSpeed(3, 4), 60, 100));
     console.log(entities);
 }, 1000);
 
 //interval du timer en fonction du temps 
-const timerScore =setInterval(() => {
-    if(gameOver){
+const timerScore = setInterval(() => {
+    if (gameOver) {
         return;
     }
-    if(pause){
+    if (pause) {
         return;
     }
-    timerAddScore +=1;
+    timerAddScore += 1;
     console.log(score);
-    score.textContent = "score  : "+timerAddScore;
-    
-    
- 
+    score.textContent = "score  : " + timerAddScore;
+
+
+
 }, 100);
 
 //interval pour l'apparitions des questions 
 setInterval(() => {
-    if(gameOver){
-       
+    isQuestion = true;
+    if (gameOver) {
+
         return;
 
     }
-    if(pause){
+    if (pause) {
 
         return;
     }
     console.log(window.questions);
-    let x = getRandomQuestionId(0,window.questions.length - 1);
-    correctQuestion=window.questions[x].proposal_valid_index;
-    proposition1= window.questions[x].proposal_1;
-    proposition2=window.questions[x].proposal_2;
-    proposition3= window.questions[x].proposal_3;
-
+    let x = getRandomQuestionId(0, window.questions.length - 1);
+    correctQuestion = window.questions[x].proposal_valid_index;
+    proposition1 = window.questions[x].proposal_1;
+    proposition2 = window.questions[x].proposal_2;
+    proposition3 = window.questions[x].proposal_3;
     textQuestion.textContent = window.questions[x].text;
-    p1LabelQuestion.textContent=proposition1;
-    p2LabelQuestion.textContent=proposition2;
-    p3LabelQuestion.textContent=proposition3;
-    menuQuestion.style.display="block";
-    ctx.canvas.style.filter="blur("+20+"px)";
+    p1LabelQuestion.textContent = proposition1;
+    p2LabelQuestion.textContent = proposition2;
+    p3LabelQuestion.textContent = proposition3;
+    menuQuestion.style.display = "block";
+    ctx.canvas.style.filter = "blur(" + 20 + "px)";
+    //prends le lien de l'image dans la base de données 
+    imgQuestion.setAttribute('src', window.questions[x].picture)
 
-   
-
-
-
-    
-    
-}, /* interval aléatoire  de 8 à 30 secondes*/getRandomQuestionInTime(10,15));
+}, /* interval aléatoire  de 8 à 30 secondes*/getRandomQuestionInTime(10, 15));
 
 
 //la fonction backToGame sert au bouton back de fermer l'écran de pause
-if(!gameOver){
-    keyboard.onKeyDown('Escape',menuPause);
-    keyboard.onKeyDown('Digit1',selectQuestion)
-    keyboard.onKeyDown('Digit2',selectQuestion)
-    keyboard.onKeyDown('Digit3',selectQuestion)
-    backToGame.onclick=menuPause;
+if (!gameOver) {
+    
+    keyboard.onKeyDown('Digit1', selectQuestion)
+    keyboard.onKeyDown('Digit2', selectQuestion)
+    keyboard.onKeyDown('Digit3', selectQuestion)
+    if(!isQuestion){
+        backToGame.onclick = menuPause;
+        keyboard.onKeyDown('Escape', menuPause);
+    }
+    
 }
 
-keyboard.onKeyDown('KeyR',restart);
-btnRestart.onclick=restart;
+keyboard.onKeyDown('KeyR', restart);
+btnRestart.onclick = restart;
 
 
-function selectQuestion(){
-    if(proposition1==correctQuestion||proposition2==correctQuestion||proposition3==correctQuestion){
-        
-        timerAddScore +=100;
-        menuQuestion.style.display="none";
-        ctx.canvas.style.filter="blur("+0+"px)";
+function selectQuestion() {
+    isQuestion=false;
+    if (proposition1 == correctQuestion || proposition2 == correctQuestion || proposition3 == correctQuestion) {
+
+        timerAddScore += 100;
+        menuQuestion.style.display = "none";
+        ctx.canvas.style.filter = "blur(" + 0 + "px)";
     }
-    else{
-        menuQuestion.style.display="none";
-        ctx.canvas.style.filter="blur("+0+"px)";
+    if (proposition1 != correctQuestion || proposition2 != correctQuestion || proposition3 != correctQuestion) {
+        timerAddScore -= 100;
+        ctx.canvas.style.filter = "blur(" + 10 + "px)";
+        menuQuestion.style.display = "none";
+        setTimeout(blur2sec, 2000);
     }
+}
+function blur2sec() {
+    ctx.canvas.style.filter = "blur(" + 0 + "px)";
+
+
 }
 function menuPause() {
 
     pause = !pause;
-    if(pause){
-        pauseMenu.style.display ="block";
-        ctx.canvas.style.filter="blur("+5+"px)";
+    if (pause && isQuestion == false) {
+        pauseMenu.style.display = "block";
+        ctx.canvas.style.filter = "blur(" + 5 + "px)";
     }
-    else{
-        pauseMenu.style.display="none";
-        ctx.canvas.style.filter="blur("+0+"px)";
+    else {
+        pauseMenu.style.display = "none";
+        ctx.canvas.style.filter = "blur(" + 0 + "px)";
     }
 }
-function restart(){
+function restart() {
     console.log("restart")
-    while(entities.length > 0){
+    while (entities.length > 0) {
         entities.pop();
     }
-    score.style.display="block";
-    restartGame.style.display="none";
-    ctx.canvas.style.filter="blur("+0+"px)";
-    ctx.canvas.style['background-color']="white";
+    score.style.display = "block";
+    restartGame.style.display = "none";
+    ctx.canvas.style.filter = "blur(" + 0 + "px)";
     timerAddScore = 0;
     player.x = ctx.canvas.width / 2;
-    player.y= ctx.canvas.height - 200;
-    gameOver=false;
+    player.y = ctx.canvas.height - 200;
+    gameOver = false;
     ctx.canvas.width = ctx.canvas.clientWidth;
     ctx.canvas.height = ctx.canvas.clientHeight
 
 }
-function menuGameOver(){
+function menuGameOver() {
 
-        if(gameOver){
-            ctx.canvas.style.filter="blur("+5+"px)";
-            restartGame.style.display="block";
-            score.style.display="none";
-            ctx.canvas.style['background-color']="black";
-            ctx.canvas.style.filter="blur("+30+"px)";
-            menuQuestion.style.display="none";
-            scoreGameOver.innerHTML = "Votre score est de : "+timerAddScore;
-            if(pause){
-                pause=false;
-                pauseMenu.style.display="none";
-                return;
-            }
-        } 
-        
-        
+    if (gameOver) {
+        ctx.canvas.style.filter = "blur(" + 5 + "px)";
+        restartGame.style.display = "block";
+        score.style.display = "none";
+        ctx.canvas.style.filter = "blur(" + 30 + "px)";
+        menuQuestion.style.display = "none";
+
+        scoreGameOver.innerHTML = "Votre score est de : " + timerAddScore;
+        if (pause) {
+            pause = false;
+            pauseMenu.style.display = "none";
+            return;
+        }
+    }
+
+
 }
 setInterval(() => {
     backgroundMoving();
 }, 1);
 
 
-function backgroundMoving(){
-    if(gameOver){
+function backgroundMoving() {
+    if (gameOver) {
         return;
     }
-    if(pause){
-        ctx.canvas.style.animation="none";
+    if (pause) {
+        ctx.canvas.style.animation = "none";
         return;
     }
-    ctx.canvas.style['background-image']="url('./sprites/background/road6.png')";
-    ctx.canvas.style.animation="scroll 40s linear infinite";
+    ctx.canvas.style['background-image'] = "url('./sprites/background/road6.png')";
+    ctx.canvas.style.animation = "scroll 40s linear infinite";
 
 }
 
@@ -250,13 +259,13 @@ function tick(time) {
     console.log(window.questions + "WORKING!");
     const dt = time - lastTime;
     lastTime = time;
-    
+
     requestAnimationFrame(tick);
-    if(gameOver){
+    if (gameOver) {
         menuGameOver();
         return;
     }
-    if(pause){
+    if (pause) {
         return;
     }
     let dir = 0.5 * Math.PI;
@@ -272,17 +281,19 @@ function tick(time) {
         dirPlayer = 'right';
     }
     player.update(dt, dirPlayer, ctx);
-
+    
+    
     //collision 
-    for(const entity of entities){
-        
-        if (entity.isInCollision(player.x, player.y)) {            
-                console.log("is in colision")
-                gameOver=true;
-                console.log(gameOver);
-                
+    for (const entity of entities) {
+
+        if (entity.isInCollision(player.x, player.y)) {
+            console.log("is in colision")
+            console.log('index.php?page=savescore&score=' + timerAddScore + ' &duration=' + duration);
+            fetch('index.php?page=savescore&score=' + timerAddScore + ' &duration=' + duration);
+            gameOver = true;
             
-         }        
+
+        }
     }
     // B) Dessine le WORLD
     // B1) On efface le canvas
@@ -292,43 +303,11 @@ function tick(time) {
     entities.sort((e1, e2) => e1.layer - e2.layer);
     for (const entity of entities) entity.draw(ctx);
 
-    
+
     player.draw(ctx);
     // pause();
 
-   
+
 }
 
 requestAnimationFrame(tick);
-
-
-//ma premiere méthode de menu
-// //ferme le menu avec le bouton
-    // backToGame.onclick = btnBackToGame;
-
-
-
-    // //active le menu
-    // if (keyboard.isKeyDown('Escape') && pauseIsTrue < 10) {
-    //     pauseIsTrue--;
-
-    //     player.speed = speedPlayer;
-    //     if (pauseIsTrue < 0) {
-    //         pauseIsTrue = 15;
-    //     }
-    //     pauseMenu.style.display = "none";
-    //     console.log("on active le menu");
-    // }
-
-    // //désactive le menu
-    // if (keyboard.isKeyDown('Escape') && pauseIsTrue > 10) {
-    //     pauseIsTrue++;
-
-    //     player.speed = 0;
-    //     if (pauseIsTrue > 20) {
-    //         pauseIsTrue = 5;
-    //     }
-
-    //     pauseMenu.style.display = "block";
-    //     console.log("on desactive le menu");
-    // }

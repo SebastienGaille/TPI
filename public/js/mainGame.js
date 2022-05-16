@@ -289,7 +289,7 @@ function tick(time) {
         if (entity.isInCollision(player.x, player.y)) {
             console.log("is in colision")
             console.log('index.php?page=savescore&score=' + timerAddScore + ' &duration=' + duration);
-            fetch('index.php?page=savescore&score=' + timerAddScore + ' &duration=' + duration);
+            fetch('index.php?page=savescore&score=' + timerAddScore + '&duration=1');
             gameOver = true;
             
 

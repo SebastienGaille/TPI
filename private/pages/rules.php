@@ -28,11 +28,27 @@
          Comment jouer
      </h3>
      <p>
-        Situation: 
-        Vous êtes sur une autoroute à contre sens et vous devez éviter les voitures,camions et motos qui viennent en contre sens.
-        Par moment, vous devrez répondre à des questions à choix multiples sur le code de la route, ATTENTION a repondre rapidement car le jeu sera toujours en cours.
-        Si vous échouez vous subirer deux secondes de pénalité.
-        Votre score sera comptabilisé à l'aide du temps et des questions répondue juste.
+    <br>
+    •	Vous êtes sur une autoroute à contre sens et vous devez éviter les voitures, camions et motos qui viennent en contre sens.<br>
+    •	Pour déplacer votre véhicule vous devrez utiliser les touches « A » et « D »<br>
+    •	La touche « A » vous permet de déplacer votre véhicule sur la gauche <br>
+    •	Et la touche « D » vous permet de déplacer votre véhicule sur la droite <br>
+    •   « Par moment, vous devrez répondre à des questions à choix multiples sur le code de la route, ATTENTION à répondre rapidement car le jeu sera toujours en cours.<br>
+    •   Pour répondre aux questions vous devrez appuyer sur les touches « 1 », « 2 » et « 3 »<br>
+    •	La touche « 1 » est affiliée à la première proposition de réponse <br>
+    •	La touche « 2 » est affiliée à la deuxième proposition de réponse <br>
+    •	La touche « 3 » est affiliée à la troisième proposition de réponse <br>
+    •	Vous pourrez faire pause à tout moment a l’aide de la touche « ESCAPE »<br>
+    •	Si vous échouez vous subirez deux secondes de pénalité.<br>
+    •	Vous pouvez relancer une partie avec la touche « R »<br>
+    •	L’historique des parties est stocké sur la page « Classement » <br>
+    •	Votre score sera comptabilisé à l'aide du temps et des questions répondue juste.<br>
+
+
+
+
+
+
      </p>
      <a href="index.php?page=menu"> Retour au menu</a>
  </div>

@@ -2,18 +2,18 @@ E1 – L’utilisateur doit conduire un véhicule dans un environnement représe
 
 E2 – L’utilisateur doit éviter des véhicules arrivant aléatoirement en sens inverse. X
 
-E3 – L’application affiche aléatoirement des questions à choix multiples sur la reconnaissance de panneaux routiers. O
+E3 – L’application affiche aléatoirement des questions à choix multiples sur la reconnaissance de panneaux routiers. X
 
-E4 – Les questions s’affichent en surimpression de la route, empêchant ainsi l’utilisateur de voir correctement les obstacles et l’obligeant à répondre rapidement. O
+E4 – Les questions s’affichent en surimpression de la route, empêchant ainsi l’utilisateur de voir correctement les obstacles et l’obligeant à répondre rapidement. X
 
-E5 – Quand l’utilisateur échoue à une question, l’écran est flouté pendant 2 secondes alors que la route continue de défiler.O
+E5 – Quand l’utilisateur échoue à une question, l’écran est flouté pendant 2 secondes alors que la route continue de défiler.X
 
 E6 – Plus l’utilisateur échoue à reconnaître un panneau, plus celui-ci sera affiché fréquemment, et inversement.O
 
-E7 – Le serveur conserve les meilleurs scores des utilisateurs et les affiche à la fin de chaque partie.O
+E7 – Le serveur conserve les meilleurs scores des utilisateurs et les affiche à la fin de chaque partie.X
 
-E8 – Le serveur conserve pour chaque partie les résultats des réponses de l’utilisateur, ainsi que la durée de la partie. L’ensemble permet de calculer le score. La date de la partie est aussi conservée. O
+E8 – Le serveur conserve pour chaque partie les résultats des réponses de l’utilisateur, ainsi que la durée de la partie. L’ensemble permet de calculer le score. La date de la partie est aussi conservée. X/O
 
 E9 – L’utilisateur peut indiquer un pseudonyme en début de partie. Le cas échéant, son pseudonyme apparaitra dans les meilleurs scores. X
 
-3 X Fait , 6 O Pas Fait
+7/X Fait , 1/O Pas Fait,1X/O fait à moitié

@@ -7,7 +7,7 @@ require_once __DIR__ . '/../myDB.php';
 
 //   //classement général
 try {
-    $requete = $db->prepare("SELECT nickname, score,duration,date FROM game LEFT JOIN user ON (game.iduser = user.iduser) GROUP BY user.iduser ORDER BY score DESC LIMIT 10 ");
+    $requete = $db->prepare("SELECT nickname, score,duration,date FROM game LEFT JOIN user ON (game.iduser = user.iduser)  ORDER BY score DESC LIMIT 10 ");
     $requete->execute();
     $scores = $requete->fetchAll();
 

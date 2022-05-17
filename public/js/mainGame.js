@@ -21,6 +21,9 @@ const backToGame = document.getElementById('back');
 const speedPlayer = 0.5;
 const restartGame = document.getElementById('gameOverMenu');
 
+const carGenerate=400;
+const motoGenerate=1500;
+const truckGenerate=1000;
 
 const menuQuestion = document.getElementById('menu-question');
 const textQuestion = document.getElementById('question-text-id');
@@ -73,7 +76,7 @@ setInterval(() => {
     let y = -100;
     entities.push(new Car(x, y, 2, getRandomSpeed(4, 5), 60, 100));
     console.log(entities);
-}, 400);
+}, carGenerate);
 
 setInterval(() => {
     if (gameOver) {
@@ -86,7 +89,7 @@ setInterval(() => {
     let y = -100;
     entities.push(new Moto(x, y, 2, getRandomSpeed(3, 5), 60, 100));
     console.log(entities);
-}, 1500);
+}, motoGenerate);
 //interval qui fait apparaitre un camion toutes les 4 secondes 
 setInterval(() => {
     if (gameOver) {
@@ -95,11 +98,11 @@ setInterval(() => {
     if (pause) {
         return;
     }
-    let x = getRandomInt(0, (ctx.canvas.width / 100) * 20);
+    let x = getRandomInt((ctx.canvas.width / 100) * 10, (ctx.canvas.width / 100) * 40);
     let y = -100;
     entities.push(new Truck(x, y, 2, getRandomSpeed(3, 4), 60, 100));
     console.log(entities);
-}, 1000);
+}, truckGenerate);
 
 //interval du timer en fonction du temps 
 const timerScore = setInterval(() => {
@@ -150,9 +153,9 @@ setInterval(() => {
 //la fonction backToGame sert au bouton back de fermer l'écran de pause
 if (!gameOver) {
     
-    keyboard.onKeyDown('Digit1', selectQuestion)
-    keyboard.onKeyDown('Digit2', selectQuestion)
-    keyboard.onKeyDown('Digit3', selectQuestion)
+    keyboard.onKeyDown('Digit1', selectQuestion1)
+    keyboard.onKeyDown('Digit2', selectQuestion2)
+    keyboard.onKeyDown('Digit3', selectQuestion3)
     if(!isQuestion){
         backToGame.onclick = menuPause;
         keyboard.onKeyDown('Escape', menuPause);
@@ -164,18 +167,57 @@ keyboard.onKeyDown('KeyR', restart);
 btnRestart.onclick = restart;
 
 
-function selectQuestion() {
+function selectQuestion1() {
     isQuestion=false;
-    if (proposition1 == correctQuestion || proposition2 == correctQuestion || proposition3 == correctQuestion) {
+    if (p1LabelQuestion.textContent == correctQuestion) {
 
         timerAddScore += 100;
         menuQuestion.style.display = "none";
         ctx.canvas.style.filter = "blur(" + 0 + "px)";
     }
-    if (proposition1 != correctQuestion || proposition2 != correctQuestion || proposition3 != correctQuestion) {
+    else {
         timerAddScore -= 100;
         ctx.canvas.style.filter = "blur(" + 10 + "px)";
         menuQuestion.style.display = "none";
+        if(timerAddScore<0){
+            timerAddScore=0;
+        }
+        setTimeout(blur2sec, 2000);
+    }
+}
+function selectQuestion2() {
+    isQuestion=false;
+    if (p2LabelQuestion.textContent == correctQuestion) {
+
+        timerAddScore += 100;
+        menuQuestion.style.display = "none";
+        ctx.canvas.style.filter = "blur(" + 0 + "px)";
+    }
+    else{
+        timerAddScore -= 100;
+        ctx.canvas.style.filter = "blur(" + 10 + "px)";
+        menuQuestion.style.display = "none";
+        if(timerAddScore<0){
+            timerAddScore=0;
+        }
+        setTimeout(blur2sec, 2000);
+    }
+}
+function selectQuestion3() {
+    isQuestion=false;
+    if (p3LabelQuestion.textContent == correctQuestion) {
+
+        timerAddScore += 100;
+        menuQuestion.style.display = "none";
+        ctx.canvas.style.filter = "blur(" + 0 + "px)";
+    }
+    else{
+        timerAddScore -= 100;
+        ctx.canvas.style.filter = "blur(" + 10 + "px)";
+        menuQuestion.style.display = "none";
+        if(timerAddScore<0){
+            timerAddScore=0;
+        }
         setTimeout(blur2sec, 2000);
     }
 }

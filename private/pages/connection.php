@@ -24,21 +24,10 @@ if($username != $usernameDB){
 $_SESSION['username'] = $username;
 $_SESSION['iduser'] = $row['iduser'];
 
-echo "page: " . $page;
 
-//$selectQuestion = $_REQUEST['selectQuestion'];
 
-//$_SESSION['idquestion'] = $selectQuestion;
+header('location: index.php?page=menu');
 
-echo "selectQuestion:"+$selectQuestion;
-
-if(isset($selectQuestion) && $isConnect){
-    $page='selectQuestion';
-    header('location: index.php?page='.$page);
-}
-else{
-    header('location: index.php?page=menu');
-}
 
 
 

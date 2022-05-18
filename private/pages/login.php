@@ -1,4 +1,12 @@
 <?php
+/*
+Nom : Gaille
+Prénom: Sébastien
+date de réalisation du projet: 02.05.2022-18.05.2022
+temps à disposition: 90 heures 
+
+description: le fichier PHP login.php
+*/
 //on crée la variable $msg qui affichera à l'utilisateur les indications pour la création de son compte
 $msg =$_REQUEST['msg'] ?? 'none';
 

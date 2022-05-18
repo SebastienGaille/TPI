@@ -1,4 +1,13 @@
 <?php
+/*
+Nom : Gaille
+Prénom: Sébastien
+date de réalisation du projet: 02.05.2022-18.05.2022
+temps à disposition: 90 heures 
+
+description: le fichier PHP connection.php
+*/
+
 $username = trim($_REQUEST['username']);
 
 require_once __DIR__ . '/../myDB.php';

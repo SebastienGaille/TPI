@@ -1,3 +1,14 @@
+/*
+Nom : Gaille
+Prénom: Sébastien
+date de réalisation du projet: 02.05.2022-18.05.2022
+temps à disposition: 90 heures 
+
+realisation : j'ai utilisé ces fonctions sur le site MDN et  je les ai modifié
+
+description: le fichier script moto.js
+est un fichier de la classe Moto 
+*/
 export function getRandomInt(min,max){
     min=Math.ceil(min);
     max = Math.floor(max);

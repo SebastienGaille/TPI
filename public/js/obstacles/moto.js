@@ -1,3 +1,13 @@
+/*
+Nom : Gaille
+Prénom: Sébastien
+date de réalisation du projet: 02.05.2022-18.05.2022
+temps à disposition: 90 heures 
+
+description: le fichier script moto.js
+est un fichier de la classe Moto 
+*/
+
 import Shape from './shape.js';
 import { getRandomInt } from '../utils/math.js';
 

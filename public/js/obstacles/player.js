@@ -1,3 +1,13 @@
+/*
+Nom : Gaille
+Prénom: Sébastien
+date de réalisation du projet: 02.05.2022-18.05.2022
+temps à disposition: 90 heures 
+
+description: le fichier script player.js
+est un fichier de la classe Player 
+*/
+
 import Shape from './shape.js';
 
 export default class Player extends Shape {

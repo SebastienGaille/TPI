@@ -1,4 +1,14 @@
+/*
+Nom : Gaille
+Prénom: Sébastien
+date de réalisation du projet: 02.05.2022-18.05.2022
+temps à disposition: 90 heures 
 
+realisation : j'ai utilisé cette classe réalisée par mon répétiteur qu'il m'avait passée pour un autre projet 
+
+description: le fichier script moto.js
+est un fichier de la classe Moto 
+*/
 
 export default class Keyboard {
 

@@ -1,3 +1,8 @@
+<!-- Nom : Gaille
+Prénom: Sébastien
+date de réalisation du projet: 02.05.2022-18.05.2022
+temps à disposition: 90 heures 
+description: le fichier PHP rules.php -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,10 +12,8 @@
     <!-- <link rel="icon" href="favicon.ico"/> -->
     <title>Rules</title>
     <link rel="stylesheet" href="./css/rules.css">
-    
 </head>
 <body>
-
 <header>
 <div>
     <h1>
@@ -19,7 +22,6 @@
     <h2>
         Règles:
     </h2>
-
 </div>
 </header>
 <main>
@@ -43,18 +45,11 @@
     •	Vous pouvez relancer une partie avec la touche « R »<br>
     •	L’historique des parties est stocké sur la page « Classement » <br>
     •	Votre score sera comptabilisé à l'aide du temps et des questions répondue juste.<br>
-
-
-
-
-
-
      </p>
      <a href="index.php?page=menu"> Retour au menu</a>
  </div>
 </main>
 <footer>
-
 </footer>
 
 </body>

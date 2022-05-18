@@ -1,3 +1,14 @@
+/*
+Nom : Gaille
+Prénom: Sébastien
+date de réalisation du projet: 02.05.2022-18.05.2022
+temps à disposition: 90 heures 
+
+description: le fichier script shape.js
+est un fichier de la classe shape 
+*/
+
+
 const collisionVisible = false;
 
 

@@ -1,5 +1,14 @@
 
 <?php
+/*
+Nom : Gaille
+Prénom: Sébastien
+date de réalisation du projet: 02.05.2022-18.05.2022
+temps à disposition: 90 heures 
+
+description: le fichier PHP savescore.php
+*/
+
 require_once __DIR__ . '/../myDB.php';
 
   $score = $_REQUEST["score"] ?? '0';

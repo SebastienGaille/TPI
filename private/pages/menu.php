@@ -1,3 +1,8 @@
+<!-- Nom : Gaille
+Prénom: Sébastien
+date de réalisation du projet: 02.05.2022-18.05.2022
+temps à disposition: 90 heures 
+description: le fichier PHP menu.php -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,8 +21,7 @@
             <div class ="title-menu">
             <h1 class="display-1" id="gameName">High Way </h1>
             <h1 class="display-1" id="pseudo">Pseudo : <?php echo $_SESSION['username'];?></h1>
-            </div>
-            
+            </div>       
             <div class="row p-3">
                 <div class="col-12 col-md-6">
                     <h1 class="display-5">
@@ -32,15 +36,10 @@
                     <h1 class="display-5">
                         <a href="index.php?page=logout" class="link">Déconnexion</a>
                     </h1>
-                  
-
-
                 </div>
 
             </div>
         </div>
-
-
     </header>
     <main>
 

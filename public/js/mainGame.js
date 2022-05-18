@@ -1,3 +1,16 @@
+/*
+Nom : Gaille
+Prénom: Sébastien
+date de réalisation du projet: 02.05.2022-18.05.2022
+temps à disposition: 90 heures 
+
+description: le fichier script mainGame.js
+est le fichier mère du jeu javascript 
+il relie tout
+*/
+
+
+//l'import de toutes les classes et fonctions que j'ai besoins 
 import Keyboard from "./utils/keyboardEvent.js";
 import Player from "./obstacles/player.js";
 import Car from "./obstacles/car.js";
@@ -7,14 +20,14 @@ import { getRandomSpeed } from './utils/math.js';
 import { getRandomQuestionId } from './utils/math.js';
 import { getRandomQuestionInTime } from './utils/math.js';
 
-console.log(window.questions[0].proposal_1)
+//on defini le canvans en 2d 
 const ctx = document.querySelector('canvas').getContext('2d');
 
 // place la taille du canvas sur la taille du DOM
 ctx.canvas.width = ctx.canvas.clientWidth;
 ctx.canvas.height = ctx.canvas.clientHeight;
 
-
+//declaration des variables et constantes 
 const keyboard = new Keyboard();
 const pauseMenu = document.getElementById('pauseMenu');
 const backToGame = document.getElementById('back');
@@ -47,20 +60,14 @@ let timerAddScore = 0;
 let btnRestart = document.getElementById('restart');
 let scoreGameOver = document.getElementById('scoreGameOver');
 
-
-let numQuestionRespond;
-let numQuestionRespondTrue;
-let numQuestionRespondFalse;
-
-
-
+//creation du joueur
 let player = new Player(ctx.canvas.width / 2, ctx.canvas.height - 200, 0, speedPlayer, 60, 100);
 let entities = [];
 
 
 
 
-
+//le random pour la position random x des entités 
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -150,13 +157,14 @@ setInterval(() => {
 }, /* interval aléatoire  de 8 à 30 secondes*/getRandomQuestionInTime(10, 15));
 
 
-//la fonction backToGame sert au bouton back de fermer l'écran de pause
+
 if (!gameOver) {
     
     keyboard.onKeyDown('Digit1', selectQuestion1)
     keyboard.onKeyDown('Digit2', selectQuestion2)
     keyboard.onKeyDown('Digit3', selectQuestion3)
     if(!isQuestion){
+        //la fonction backToGame sert au bouton back de fermer l'écran de pause
         backToGame.onclick = menuPause;
         keyboard.onKeyDown('Escape', menuPause);
     }
@@ -166,7 +174,7 @@ if (!gameOver) {
 keyboard.onKeyDown('KeyR', restart);
 btnRestart.onclick = restart;
 
-
+//les fontions pour la selection des questions 
 function selectQuestion1() {
     isQuestion=false;
     if (p1LabelQuestion.textContent == correctQuestion) {
@@ -221,11 +229,14 @@ function selectQuestion3() {
         setTimeout(blur2sec, 2000);
     }
 }
+//cette fonction s'active uniquement 2 seconde apres que l'utilisateur rate une question
 function blur2sec() {
+    //effet de flou désactivé
     ctx.canvas.style.filter = "blur(" + 0 + "px)";
 
 
 }
+//cette foncion sert a activer la pause du jeu 
 function menuPause() {
 
     pause = !pause;
@@ -238,11 +249,13 @@ function menuPause() {
         ctx.canvas.style.filter = "blur(" + 0 + "px)";
     }
 }
+//cette fonction sert a restart le jeu quand on appuye sur "R"
 function restart() {
     console.log("restart")
     while (entities.length > 0) {
         entities.pop();
     }
+    menuQuestion.style.display = "none";
     score.style.display = "block";
     restartGame.style.display = "none";
     ctx.canvas.style.filter = "blur(" + 0 + "px)";
@@ -254,8 +267,9 @@ function restart() {
     ctx.canvas.height = ctx.canvas.clientHeight
 
 }
+//la fonction menuGameOver s'active quand le joueur percute un obstacle 
 function menuGameOver() {
-
+    //si le game over est actif affiche le menu
     if (gameOver) {
         ctx.canvas.style.filter = "blur(" + 5 + "px)";
         restartGame.style.display = "block";
@@ -264,6 +278,7 @@ function menuGameOver() {
         menuQuestion.style.display = "none";
 
         scoreGameOver.innerHTML = "Votre score est de : " + timerAddScore;
+        //sécurité pour que l'utilisateur ne puissent pas mettre pause  
         if (pause) {
             pause = false;
             pauseMenu.style.display = "none";
@@ -277,7 +292,7 @@ setInterval(() => {
     backgroundMoving();
 }, 1);
 
-
+//fonction de deplacement du background 
 function backgroundMoving() {
     if (gameOver) {
         return;
@@ -291,22 +306,21 @@ function backgroundMoving() {
 
 }
 
-// const timerScore = setInterval(() => {
-//     score +=1;
-//     document.querySelector("#score").textContent = score;
-// }, 1000);
 
-
+//la fonction tick est l'intervalle mère du jeu
 function tick(time) {
-    console.log(window.questions + "WORKING!");
+    
+    //recupere le temps qui va activer cette fonction
     const dt = time - lastTime;
     lastTime = time;
 
     requestAnimationFrame(tick);
+    // si le game over est activé return
     if (gameOver) {
         menuGameOver();
         return;
     }
+    //si la pause est activée return
     if (pause) {
         return;
     }
@@ -329,8 +343,7 @@ function tick(time) {
     for (const entity of entities) {
 
         if (entity.isInCollision(player.x, player.y)) {
-            console.log("is in colision")
-            console.log('index.php?page=savescore&score=' + timerAddScore + ' &duration=' + duration);
+            //le fetch envoie les infos a la page savescore.php
             fetch('index.php?page=savescore&score=' + timerAddScore + '&duration=1');
             gameOver = true;
             

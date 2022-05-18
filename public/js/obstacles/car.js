@@ -1,7 +1,17 @@
+/*
+Nom : Gaille
+Prénom: Sébastien
+date de réalisation du projet: 02.05.2022-18.05.2022
+temps à disposition: 90 heures 
+
+description: le fichier script car.js
+est un fichier de la classe Car 
+*/
+
 import Shape from './shape.js';
 import { getRandomInt } from '../utils/math.js';
 
-
+//on exporte la classe
 export default class Car extends Shape {
     constructor(x,y,layer,speed = 0.1,hitBoxWidth=100,hitBoxHeight=100){
         super(x,y,layer,speed,hitBoxWidth,hitBoxHeight);
@@ -16,5 +26,3 @@ export default class Car extends Shape {
         super.draw(ctx);
     }
 }
-
-//fait des voitures avec des id aléatoire 

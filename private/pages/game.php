@@ -8,23 +8,13 @@ temps à disposition: 90 heures
 description: le fichier PHP game.php
 */
 require_once __DIR__ . '/../myDB.php';
-
-//  $request =$db->prepare("SELECT * FROM question");
 $request =$db->prepare("SELECT text,proposal_1, proposal_2,proposal_3,proposal_valid_index,picture  FROM question"); //mets tout les champs
  $request->execute();
  $questions = $request -> fetchAll();
-//  $result = $sth->fetchAll(PDO::FETCH_CLASS, 'question');
-
  $questionsArray = [];
  foreach ($questions as $question) {
    $questionsArray[] = $question;
  };
-
-//  //print_r($questionsArray);
-//  die(json_encode($questionsArray));
-
-
-
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -37,9 +27,7 @@ $request =$db->prepare("SELECT text,proposal_1, proposal_2,proposal_3,proposal_v
 
     <link rel="icon" href="favicon.ico" />
     <script>
-        
          window.questions = <?php echo json_encode($questionsArray);?>;
-        
     </script>
     <script type="module" src="./js/mainGame.js"></script>
 </head>

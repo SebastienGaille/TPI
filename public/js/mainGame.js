@@ -131,12 +131,9 @@ const timerScore = setInterval(() => {
 setInterval(() => {
     isQuestion = true;
     if (gameOver) {
-
         return;
-
     }
     if (pause) {
-
         return;
     }
     console.log(window.questions);
@@ -153,7 +150,6 @@ setInterval(() => {
     ctx.canvas.style.filter = "blur(" + 20 + "px)";
     //prends le lien de l'image dans la base de données 
     imgQuestion.setAttribute('src', window.questions[x].picture)
-
 }, /* interval aléatoire  de 8 à 30 secondes*/getRandomQuestionInTime(10, 15));
 
 
